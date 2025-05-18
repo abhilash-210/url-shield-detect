@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,17 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				cyber: {
+					dark: '#121212',
+					darker: '#0a0a0a',
+					light: '#1e1e1e',
+					accent: '#00b4d8',
+					success: '#00f5d4',
+					warning: '#ffd166',
+					danger: '#ef233c',
+					text: '#e5e5e5',
+					muted: '#8a8a8a'
 				}
 			},
 			borderRadius: {
@@ -84,11 +96,32 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'pulse-glow': {
+					'0%, 100%': {
+						opacity: '1',
+						boxShadow: '0 0 0 rgba(0, 180, 216, 0)'
+					},
+					'50%': {
+						opacity: '0.8',
+						boxShadow: '0 0 10px rgba(0, 180, 216, 0.5)'
+					}
+				},
+				'scanning': {
+					'0%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(100%)' },
+					'100%': { transform: 'translateY(0)' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+				'scanning': 'scanning 3s ease-in-out infinite'
+			},
+			fontFamily: {
+				mono: ['JetBrains Mono', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+				sans: ['Inter', 'sans-serif']
 			}
 		}
 	},
