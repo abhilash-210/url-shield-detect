@@ -51,10 +51,12 @@ const PhishingStats: React.FC = () => {
 
     fetchStats();
     
-    // Set up real-time subscription for updates - Fix the channel subscription
+    // Set up real-time subscription for updates with correct payload and event parameters
     const subscription = supabase
       .channel('public:detection_history')
-      .on('INSERT', fetchStats)
+      .on('INSERT', (_event, _payload) => {
+        fetchStats();
+      })
       .subscribe();
       
     return () => {
