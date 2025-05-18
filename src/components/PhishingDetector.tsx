@@ -1,38 +1,15 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import UrlInput from "./UrlInput";
 import ResultsDisplay from "./ResultsDisplay";
 import PhishingStats from "./PhishingStats";
 import { analyzeUrl } from "@/utils/urlAnalysis";
 import { useToast } from "@/hooks/use-toast";
-import { useNavigate } from "react-router-dom";
-import { supabase } from "@/lib/supabase";
 
 const PhishingDetector: React.FC = () => {
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [result, setResult] = useState(null);
   const { toast } = useToast();
-  const navigate = useNavigate();
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    // Check if user is logged in
-    const checkSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
-        navigate('/login');
-        toast({
-          title: "Authentication Required",
-          description: "Please login to use the phishing detection tool",
-          variant: "default",
-        });
-      } else {
-        setUser(session.user);
-      }
-    };
-
-    checkSession();
-  }, [navigate, toast]);
 
   const handleAnalyzeUrl = async (url: string) => {
     setIsAnalyzing(true);
@@ -47,16 +24,6 @@ const PhishingDetector: React.FC = () => {
       
       setResult(analysisResult as any);
       
-      // Save analysis to Supabase
-      if (user) {
-        await supabase.from('detection_history').insert({
-          user_id: user.id,
-          url: url,
-          result: analysisResult,
-          detected_at: new Date().toISOString()
-        });
-      }
-      
       // Show toast notification based on result
       const safetyScore = (analysisResult as any).safetyScore;
       if (safetyScore >= 80) {
@@ -69,7 +36,6 @@ const PhishingDetector: React.FC = () => {
         toast({
           title: "Analysis Complete",
           description: "This URL may be suspicious - proceed with caution",
-          // Changed from "warning" to "default" as warning is not a valid variant
           variant: "default", 
         });
       } else {
