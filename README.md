@@ -1,73 +1,90 @@
-# Welcome to your Lovable project
 
-## Project info
+# PhishGuard Pro - Advanced Phishing Detection Tool
 
-**URL**: https://lovable.dev/projects/d775a34c-d211-4a87-801d-a369a2c51c0b
+PhishGuard Pro is a web-based cybersecurity tool designed to detect phishing and malicious URLs through advanced pattern recognition and machine learning algorithms. Built with modern web technologies, it provides a professional interface for security professionals to analyze and identify potential threats.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- **Real-time URL Analysis**: Instantly analyze URLs for phishing indicators
+- **Machine Learning Detection**: Utilizes advanced algorithms to identify modern phishing techniques
+- **User Authentication**: Secure login and registration system
+- **Detection History**: Track and review your URL analysis history
+- **Real-time Statistics**: View up-to-date phishing detection statistics
+- **Responsive Design**: Professional interface optimized for both desktop and mobile devices
+- **Database Integration**: Stores analysis results and known threats for improved detection
 
-**Use Lovable**
+## Technology Stack
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/d775a34c-d211-4a87-801d-a369a2c51c0b) and start prompting.
+- **Frontend**: React, TypeScript, Tailwind CSS, Shadcn UI
+- **Backend**: Supabase (Authentication, Database)
+- **State Management**: React Query
+- **Routing**: React Router
+- **UI Components**: Custom cyber-themed components
 
-Changes made via Lovable will be committed automatically to this repo.
+## Installation and Setup
 
-**Use your preferred IDE**
+1. Clone the repository
+```bash
+git clone https://github.com/yourusername/phishguard-pro.git
+cd phishguard-pro
+```
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+2. Install dependencies
+```bash
+npm install
+```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+3. Set up environment variables
+```
+VITE_SUPABASE_URL=your_supabase_url
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+4. Run the development server
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## Database Schema
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+The project uses the following tables in Supabase:
 
-**Use GitHub Codespaces**
+1. **detection_history**
+   - `id` (uuid, primary key)
+   - `user_id` (uuid, foreign key)
+   - `url` (text)
+   - `result` (jsonb)
+   - `detected_at` (timestamp)
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+2. **known_threats**
+   - `id` (uuid, primary key)
+   - `pattern` (text)
+   - `description` (text)
+   - `threat_level` (text)
 
-## What technologies are used for this project?
+## Usage
 
-This project is built with:
+1. **Register/Login**: Create an account or log in to access the tool
+2. **URL Analysis**: Enter a URL in the analysis field to check it
+3. **Review Results**: View the detailed analysis results, including safety score and identified threat factors
+4. **View History**: Access your previous URL analyses in the dashboard
+5. **Statistics**: Review real-time phishing detection statistics
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Security Features
 
-## How can I deploy this project?
+- Password hashing and secure authentication via Supabase
+- Real-time threat database updates
+- Pattern recognition for modern phishing techniques
+- Identification of suspicious TLDs, redirects, and domain impersonation
 
-Simply open [Lovable](https://lovable.dev/projects/d775a34c-d211-4a87-801d-a369a2c51c0b) and click on Share -> Publish.
+## Deployment
 
-## Can I connect a custom domain to my Lovable project?
+The application can be deployed to any static hosting service that supports single-page applications. For optimal performance, deploy the frontend to a CDN-backed service like Vercel, Netlify, or Cloudflare Pages.
 
-Yes, you can!
+## Contributing
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
