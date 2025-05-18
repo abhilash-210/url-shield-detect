@@ -36,7 +36,8 @@ const PhishingDetector: React.FC = () => {
         toast({
           title: "Analysis Complete",
           description: "This URL may be suspicious - proceed with caution",
-          variant: "warning",
+          // Changed from "warning" to "default" as warning is not a valid variant
+          variant: "default", 
         });
       } else {
         toast({

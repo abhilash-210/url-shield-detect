@@ -72,7 +72,11 @@ const ResultsDisplay: React.FC<ResultsDisplayProps> = ({ result }) => {
                   <span className="text-sm text-cyber-text">Safety Score</span>
                   <span className={`text-sm font-bold ${getStatusColor()}`}>{result.safetyScore}%</span>
                 </div>
-                <Progress value={result.safetyScore} className="h-2 bg-cyber-darker" indicatorClassName={getProgressColor()} />
+                {/* Fixed: Removed indicatorClassName and applied the color directly to className prop */}
+                <Progress 
+                  value={result.safetyScore} 
+                  className={`h-2 bg-cyber-darker ${getProgressColor()}`} 
+                />
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
