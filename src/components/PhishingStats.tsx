@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import {
   Card,
@@ -50,10 +51,10 @@ const PhishingStats: React.FC = () => {
 
     fetchStats();
     
-    // Set up real-time subscription for updates
+    // Set up real-time subscription for updates - Fix the channel subscription
     const subscription = supabase
       .channel('public:detection_history')
-      .on('INSERT', () => fetchStats())
+      .on('INSERT', fetchStats)
       .subscribe();
       
     return () => {
